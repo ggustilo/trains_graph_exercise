@@ -26,4 +26,24 @@ public class Track {
         return this.distance;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Track track = (Track) o;
+
+        if (distance != track.distance) return false;
+        if (!origin.equals(track.origin)) return false;
+        return destination.equals(track.destination);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = origin.hashCode();
+        result = 31 * result + destination.hashCode();
+        result = 31 * result + distance;
+        return result;
+    }
 }

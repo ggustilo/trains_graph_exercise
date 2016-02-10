@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Town {
-	private String name;
+
+    private String name;
     private List<Track> tracksIn;
     private List<Track> tracksOut;
 
@@ -12,9 +13,21 @@ public class Town {
         this.tracksIn = findAllTracksIn();
     }
 
-    public static void main(String[] args) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-	}
+        Town town = (Town) o;
+
+        return getName().equals(town.getName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getName().hashCode();
+    }
 
     public String getName() {
         return this.name;
@@ -30,6 +43,7 @@ public class Town {
 
     public List<Track> findAllTracksOut() {
         List<Track> tracks = new ArrayList<Track>();
+
         return tracks;
     }
 
