@@ -3,24 +3,24 @@ import org.junit.Test;
 
 public class TownTest {
 
-  private Town testTown = new Town("A");
+    private Town town = new Town("A");
 
   @Test
   public void townShouldHaveNameString() {
     // assert statement
-    assertEquals("Town A should have name 'A'", "A", testTown.getName());
+    assertSame("Town A should have name 'A'", "A", town.getName());
   }
 
   @Test
   public void townShouldHaveTracksOutArray() {
     // assert statement
-    assertEquals("Town A should have an array of tracks going out of town", testTown.findAllTracksOut(), testTown.getTracksOut());
+   assertSame("Town A should have an array of tracks going out of town", Main.getGraph().findAllTracksOutOfTown(town), town.getTracksOut());
   }
 
   @Test
   public void townShouldHaveTracksInArray() {
     // assert statement
-    assertEquals("Town A should have an array of tracks going into town", testTown.findAllTracksIn(), testTown.getTracksIn());
+    assertSame("Town A should have an array of tracks going into town", Main.getGraph().findAllTracksIntoTown(town), town.getTracksIn());
   }
 
 }

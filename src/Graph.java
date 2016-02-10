@@ -1,4 +1,6 @@
 import java.lang.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Graph {
 
@@ -16,5 +18,29 @@ public class Graph {
 
     public Track[] getTracks() {
         return tracks;
+    }
+
+    public List<Track> findAllTracksOutOfTown(Town town) {
+        List<Track> tracksOut = new ArrayList<Track>();
+        Track[] allTracks = this.getTracks();
+
+        for (int i = 0; i < allTracks.length; i++) {
+            if (allTracks[i].getOrigin() == town) {
+                tracksOut.add(allTracks[i]);
+            }
+        }
+        return tracksOut;
+    }
+
+    public List<Track> findAllTracksIntoTown(Town town) {
+        List<Track> tracksIn = new ArrayList<Track>();
+        Track [] allTracks = this.getTracks();
+
+        for (int i = 0; i < allTracks.length; i++) {
+            if (allTracks[i].getDestination() == town) {
+                tracksIn.add(allTracks[i]);
+            }
+        }
+        return tracksIn;
     }
 }

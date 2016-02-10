@@ -3,19 +3,19 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GraphTest {
-    Town town1 = new Town("A");
-    Town town2 = new Town("B");
-    Town town3 = new Town("C");
+    private Town town1 = new Town("A");
+    private Town town2 = new Town("B");
+    private Town town3 = new Town("C");
 
-    Town[] testTowns = {town1, town2, town3};
+    private Town[] testTowns = {town1, town2, town3};
 
-    Track trackAB = new Track(town1, town2, 5);
-    Track trackBC = new Track(town2, town3, 7);
-    Track trackCB = new Track(town3, town2, 8);
+    private Track trackAB = new Track(town1, town2, 5);
+    private Track trackBC = new Track(town2, town3, 7);
+    private Track trackCB = new Track(town3, town2, 8);
 
-    Track[] testTracks = {trackAB, trackBC, trackCB};
+    private Track[] testTracks = {trackAB, trackBC, trackCB};
 
-    Graph testGraph = new Graph(testTowns, testTracks);
+    private Graph testGraph = new Graph(testTowns, testTracks);
 
     @Test
     public void graphShouldHaveAnArrayOfTowns() {

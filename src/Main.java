@@ -3,37 +3,16 @@ import java.util.List;
 import java.lang.*;
 import java.io.*;
 
-/*
-Pseudocode:
-
-Open up the input.txt file
-Grab one line at a time
-While there are still lines
-    pass the line to a method to create town objects from it
-    pass the line to a method to create track objects from it
-
-In create town objects
-    parse the first letters of the line
-    append the town objects to an array list of town objects
-
-In create track objects
-    parse the last letter of the line
-    append the town objects to an array list of track objects
-
-When there are no lines left,
-    create a new graph with the array list of town objects and the array list of track objects
-
-*/
 public class Main {
 
     private List<Town> townsForGraph = new ArrayList<Town>();
     private List<Track> tracksForGraph = new ArrayList<Track>();
+    private static Graph graph;
 
     public static void main(String[] args) {
         Main main = new Main();
         main.setUp();
     }
-
 
     public void setUp() {
 
@@ -57,7 +36,6 @@ public class Main {
             }
 
             // Make a graph with all our new objects
-
             makeGraph();
             // Always close files.
             bufferedReader.close();
@@ -109,9 +87,10 @@ public class Main {
         Town[] towns = new Town[townsForGraph.size()];
         townsForGraph.toArray(towns);
 
-        Graph graph = new Graph(towns, tracks);
-        System.out.println(graph);
-        System.out.println(graph.getTowns().length);
-        System.out.println(graph.getTracks().length);
+        graph = new Graph(towns, tracks);
+    }
+
+    public static Graph getGraph() {
+        return graph;
     }
 }
