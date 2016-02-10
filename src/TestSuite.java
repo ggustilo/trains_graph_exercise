@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
         TownTest.class,
         TrackTest.class,
         RouteTest.class,
-        RouteCalculatorTest.class
+        RouteCalculatorTest.class,
+        GraphTest.class
 })
 
 public class TestSuite {
