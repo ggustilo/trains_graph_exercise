@@ -1,5 +1,7 @@
-public class Route {
+import java.util.ArrayList;
+import java.util.List;
 
+public class Route {
 
     private Town[] towns;
 
@@ -14,7 +16,23 @@ public class Route {
     public Town[] getTowns() {
         return this.towns;
     }
+
+    public List<Track> findTracks() {
+
+        List<Track> tracks = new ArrayList<Track>();
+
+        for(int i = 0; i < towns.length; i++)
+        {
+            return null;
+        }
+        return tracks;
+    }
+
 	// public method to calculate total distance of path given array of towns
+
+    public int findTotalDistance() {
+        return 9;
+    }
 
 	// public method to calculate the number of routes possible given start, end and # stops
 

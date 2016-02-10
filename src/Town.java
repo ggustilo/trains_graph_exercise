@@ -6,8 +6,8 @@ public class Town {
     private List<Track> tracksIn;
     private List<Track> tracksOut;
 
-    public Town(String name) {
-        this.name = name;
+    public Town(String townName) {
+        this.name = townName;
 		this.tracksOut = findAllTracksOut();
         this.tracksIn = findAllTracksIn();
     }
