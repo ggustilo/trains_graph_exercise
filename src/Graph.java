@@ -43,4 +43,19 @@ public class Graph {
         }
         return tracksIn;
     }
+
+    public Track findTrackBetweenTwoTowns(Town origin, Town destination) {
+        Track[] allTracks = this.getTracks();
+
+        try {
+            for (int i = 0; i < allTracks.length; i++) {
+                if (allTracks[i].getOrigin() == origin && allTracks[i].getDestination() == destination) {
+                    return allTracks[i];
+                }
+            }
+        } catch (Exception NullPointerException) {
+            System.out.println("There is no track with that start and end point.");
+        }
+        return null;
+    }
 }

@@ -9,19 +9,19 @@ public class TrackTest {
   @Test
   public void trackShouldHaveAStartTown() {
     // assert statement
-    assertEquals("Track should have a start point that is a town.", startTown, testTrack.getOrigin());
+    assertSame("Track should have a start point that is a town.", startTown, testTrack.getOrigin());
   }
 
   @Test
   public void trackShouldHaveAnEndTown() {
     // assert statement
-    assertEquals("Track should have an end point that is a town.", endTown, testTrack.getDestination());
+    assertSame("Track should have an end point that is a town.", endTown, testTrack.getDestination());
   }
 
   @Test
   public void TrackShouldHaveADistance() {
     // assert statement
-    assertEquals("Track should have a distance that is an integer.", 5, testTrack.getDistance());
+    assertSame("Track should have a distance that is an integer.", 5, testTrack.getDistance());
   }
 
 }

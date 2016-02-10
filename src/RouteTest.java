@@ -11,26 +11,26 @@ public class RouteTest {
   @Test
   public void routeShouldHaveTownsAlongWhichItPasses() {
     // assert statement
-    assertEquals("A route should have towns along which it passes", towns, testRoute.getTowns());
+    assertArrayEquals("A route should have towns along which it passes", towns, testRoute.getTowns());
   }
 
   @Test
   public void aValidRouteShouldHaveTracksBetweenItsTowns() {
     List<Track> tracks = new ArrayList<Track>();
     // assert statement
-    assertEquals("A valid route should have tracks between its towns", tracks, testRoute.findTracks());
+    assertSame("A valid route should have tracks between its towns", tracks, testRoute.findTracks());
   }
 
   @Test
-  public void anInvalidRouteShouldHaveTracksBetweenItsTowns() {
+  public void anInvalidRouteShouldNotHaveTracksBetweenItsTowns() {
     // assert statement
-    assertEquals("An invalid route should not have tracks between its towns", null, testRoute.findTracks());
+    assertSame("An invalid route should not have tracks between its towns", null, testRoute.findTracks());
   }
 
   @Test
   public void routeShouldHaveATotalDistance() {
     // assert statement
-    assertEquals("A route should have a total distance", 9, testRoute.findTotalDistance());
+    assertSame("A route should have a total distance", 9, testRoute.findTotalDistance());
   }
 
 }

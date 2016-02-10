@@ -14,6 +14,7 @@ public class Route {
 	}
 
     public Town[] getTowns() {
+
         return this.towns;
     }
 

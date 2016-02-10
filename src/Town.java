@@ -34,15 +34,15 @@ public class Town {
     }
 
 
-    public Track[] getTracksOut() {
-        List<Track> tracksOutOfTown = Main.getGraph().findAllTracksOutOfTown(this);
+    public Track[] getTracksOut(Graph graph) {
+        List<Track> tracksOutOfTown = graph.findAllTracksOutOfTown(this);
         Track[] tracks = new Track[tracksOutOfTown.size()];
         tracksOutOfTown.toArray(tracks);
         return tracks;
     }
 
-    public Track[] getTracksIn() {
-        List<Track> tracksIntoTown = Main.getGraph().findAllTracksIntoTown(this);
+    public Track[] getTracksIn(Graph graph) {
+        List<Track> tracksIntoTown = graph.findAllTracksIntoTown(this);
         Track[] tracks = new Track[tracksIntoTown.size()];
         tracksIntoTown.toArray(tracks);
         return tracks;
