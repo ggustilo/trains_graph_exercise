@@ -39,11 +39,10 @@ public class Main {
     }
 
     private static void createObject(String line) {
-        Town origin = new Town(line.substring(0, 0));
-        Town destination = new Town(line.substring(0, 0));
-        int distance = (int)line.charAt(2);
+        Town origin = new Town(line.substring(0, 1));
+        Town destination = new Town(line.substring(1, 2));
+        int distance = Integer.parseInt(line.substring(2));
         new Track(origin, destination, distance);
-        System.out.println(origin.getName());
     }
 
 }
