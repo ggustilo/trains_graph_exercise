@@ -5,9 +5,6 @@ import org.junit.Test;
 
 public class RouteTest {
 
-  private Town[] towns = {new Town("A"), new Town("B"), new Town("C")};
-  private Route testRoute = new Route(towns);
-
   @Test
   public void routeShouldHaveTownsAlongWhichItPasses() {
     // assert statement
@@ -16,15 +13,15 @@ public class RouteTest {
 
   @Test
   public void aValidRouteShouldHaveTracksBetweenItsTowns() {
-    List<Track> tracks = new ArrayList<Track>();
     // assert statement
-    assertSame("A valid route should have tracks between its towns", tracks, testRoute.findTracks());
+    assertSame("A valid route should have tracks between its towns", routeTracks, testRoute.findTracks());
   }
 
   @Test
   public void anInvalidRouteShouldNotHaveTracksBetweenItsTowns() {
+    Track[] emptyArrayOfTracks = new Track[0];
     // assert statement
-    assertSame("An invalid route should not have tracks between its towns", null, testRoute.findTracks());
+    assertSame("An invalid route should not have tracks between its towns", emptyArrayOfTracks, testRoute.findTracks());
   }
 
   @Test

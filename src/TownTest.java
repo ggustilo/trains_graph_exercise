@@ -18,8 +18,7 @@ public class TownTest {
 
     private Graph graph = new Graph(towns, tracks);
 
-    private Track[] tracksOutForTown1 = {track1, track6};
-    private Track[] tracksInForTown1 = {track3, track4};
+
 
   @Test
   public void townShouldHaveNameString() {

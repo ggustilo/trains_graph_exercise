@@ -44,7 +44,7 @@ public class Graph {
         return tracksIn;
     }
 
-    public Track findTrackBetweenTwoTowns(Town origin, Town destination) {
+    public Track findDirectedTrackBetweenTwoTowns(Town origin, Town destination) {
         Track[] allTracks = this.getTracks();
 
         try {

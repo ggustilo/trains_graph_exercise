@@ -19,12 +19,17 @@ public class Route {
     }
 
     public List<Track> findTracks() {
-
+        Main main = new Main();
+        Graph graph = main.getGraph();
         List<Track> tracks = new ArrayList<Track>();
 
         for(int i = 0; i < towns.length; i++)
         {
-            return null;
+            Track directedTrack = graph.findDirectedTrackBetweenTwoTowns(towns[i], towns[i + 1]);
+
+            if (!tracks.contains(directedTrack)) {
+                tracks.add(directedTrack);
+            }
         }
         return tracks;
     }
@@ -32,6 +37,7 @@ public class Route {
 	// public method to calculate total distance of path given array of towns
 
     public int findTotalDistance() {
+
         return 9;
     }
 
