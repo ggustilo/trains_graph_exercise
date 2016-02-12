@@ -2,26 +2,26 @@ import junit.framework.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-public class Fixtures extends GraphTest{
+public class Fixtures extends TestSuite {
 
-    private Town townA;
-    private Town townB;
-    private Town townC;
-    private Town[] towns = new Town[3];
+    public Town townA;
+    public Town townB;
+    public Town townC;
+    public Town[] towns = new Town[3];
 
-    private Track trackAB;
-    private Track trackBC;
-    private Track trackCA;
-    private Track trackBA;
-    private Track trackCB;
-    private Track trackAC;
-    private Track[] tracks = new Track[6];
+    public Track trackAB;
+    public Track trackBC;
+    public Track trackCA;
+    public Track trackBA;
+    public Track trackCB;
+    public Track trackAC;
+    public Track[] tracks = new Track[6];
 
-    private Graph graph;
-    private Route testRoute;
-    private Track[] routeTracks;
-    private Track[] tracksOutForTown1;
-    private Track[] tracksInForTown1;
+    public Graph graph;
+    public Route testRoute;
+    public Track[] routeTracks;
+    public Track[] tracksOutForTown1;
+    public Track[] tracksInForTown1;
 
     @BeforeClass
     protected void setUp() {
