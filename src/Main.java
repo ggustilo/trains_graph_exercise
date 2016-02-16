@@ -20,19 +20,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // String filename = args[0];
+        String fileName = args[0];
 
         if (instance == null) {
             instance = new Main();
         }
 
-        instance.setUp();
+        instance.setUp(fileName);
     }
 
-    public void setUp() {
-
-        // The name of the file to open.
-        String fileName = "input.txt";
+    public void setUp(String fileName) {
 
         // This will reference one line at a time
         String line = null;
@@ -51,11 +48,8 @@ public class Main {
             }
 
             // Make a graph with all our new objects
-            System.out.println(tracksForGraph);
-            System.out.println(townsForGraph);
             this.makeGraph();
-
-            System.out.println(graph);
+            System.out.println(graph.findDirectedTrackBetweenTwoTowns(townsForGraph.get(0), townsForGraph.get(1)).getDistance());
             // Always close files.
             bufferedReader.close();
         }
@@ -107,7 +101,6 @@ public class Main {
         townsForGraph.toArray(towns);
 
         graph = new Graph(towns, tracks);
-        System.out.println(graph);
     }
 
     public static Graph getGraph() {
