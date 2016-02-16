@@ -10,12 +10,12 @@ public class GraphTest {
 
     @Test
     public void graphShouldHaveAnArrayOfTowns() {
-        assertArrayEquals("A graph should have an array of town objects.", Fixtures.towns, graph.getTowns());
+        assertArrayEquals("A graph should have an array of town objects.", Fixtures.towns, Fixtures.graph.getTowns());
     }
 
     @Test
     public void graphShouldHaveAnArrayOfTracks() {
-        assertArrayEquals("A graph should have an array of track objects.", Fixtures.tracks, graph.getTracks());
+        assertArrayEquals("A graph should have an array of track objects.", Fixtures.tracks, Fixtures.graph.getTracks());
     }
 
 }
