@@ -13,20 +13,24 @@ public class Main {
      */
     private List<Town> townsForGraph = new ArrayList<Town>();
     private List<Track> tracksForGraph = new ArrayList<Track>();
-    private static Graph graph;
+    public static Graph graph;
     private static Main instance;
 
     public static void main(String[] args) {
+
+        String filename = args[0];
+
         if (instance == null) {
             instance = new Main();
         }
-        instance.setUp();
+
+        instance.setUp(filename);
     }
 
-    public void setUp() {
+    public void setUp(String filename) {
 
         // The name of the file to open.
-        String fileName = "input.txt";
+        String fileName = filename;
 
         // This will reference one line at a time
         String line = null;
@@ -45,7 +49,11 @@ public class Main {
             }
 
             // Make a graph with all our new objects
+            System.out.println(tracksForGraph);
+            System.out.println(townsForGraph);
             this.makeGraph();
+
+            System.out.println(graph);
             // Always close files.
             bufferedReader.close();
         }
