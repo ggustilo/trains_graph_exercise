@@ -1,3 +1,5 @@
+package src;
+
 public class Track {
 
     private Town origin;

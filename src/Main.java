@@ -1,3 +1,5 @@
+package src;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.*;
@@ -18,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String filename = args[0];
+        String filename = "input.txt";
 
         if (instance == null) {
             instance = new Main();
