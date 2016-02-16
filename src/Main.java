@@ -27,6 +27,8 @@ public class Main {
         }
 
         instance.setUp(fileName);
+        RouteCalculator routeCalculator = new RouteCalculator();
+        routeCalculator.run();
     }
 
     public void setUp(String fileName) {
@@ -49,7 +51,6 @@ public class Main {
 
             // Make a graph with all our new objects
             this.makeGraph();
-            System.out.println(graph.findDirectedTrackBetweenTwoTowns(townsForGraph.get(0), townsForGraph.get(1)).getDistance());
             // Always close files.
             bufferedReader.close();
         }
@@ -101,11 +102,5 @@ public class Main {
         townsForGraph.toArray(towns);
 
         graph = new Graph(towns, tracks);
-    }
-
-    public static Graph getGraph() {
-        System.out.println("IN GET GRAPH");
-        System.out.println(graph);
-        return graph;
     }
 }

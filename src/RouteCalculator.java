@@ -1,20 +1,38 @@
 package src;
 
 public class RouteCalculator {
-	public static void main(String[] args) {
-		// get input from text file
-		// create town objects
-		// create track objects
-		System.out.println("Hello from our new IDE");
-		System.out.println("This is a new line now");
-		// call methods to do these:
+	public static void run() {
+				System.out.println("Hello.  Set up is complete.  Running our tests...");
 
-			// distance of a path:
+				Town townA = Main.graph.getTown("A");
+				Town townB = Main.graph.getTown("B");
+				Town townC = Main.graph.getTown("C");
+				Town townD = Main.graph.getTown("D");
+				Town townE = Main.graph.getTown("E");
+
+				Town[] towns1 = {townA, townB, townC};
+				Town[] towns2 = {townA, townD};
+				Town[] towns3 = {townA, townD, townC};
+				Town[] towns4 = {townA, townE, townB, townC, townD};
+				Town[] towns5 = {townA, townE, townD};
+
+				Route routeABC = new Route(towns1);
+				Route routeAD = new Route(towns2);
+				Route routeADC = new Route(towns3);
+				Route routeAEBCD = new Route(towns4);
+				Route routeAED = new Route(towns5);
+
 				// 1. The distance of the route A-B-C.
+		    System.out.println(Main.graph.findTotalDistanceOfRoute(routeABC));
 				// 2. The distance of the route A-D.
+        System.out.println(Main.graph.findTotalDistanceOfRoute(routeAD));
 				// 3. The distance of the route A-D-C.
+        System.out.println(Main.graph.findTotalDistanceOfRoute(routeADC));
 				// 4. The distance of the route A-E-B-C-D.
+        System.out.println(Main.graph.findTotalDistanceOfRoute(routeAEBCD));
 				// 5. The distance of the route A-E-D.
+        System.out.println(Main.graph.findTotalDistanceOfRoute(routeAED));
+
 
 			// number of trips given start and end and number of stops:
 					// 6. The number of trips starting at C and ending at C with a maximum of 3 stops.  In the sample data below, there are two such trips: C-D-C (2 stops). and C-E-B-C (3 stops).
