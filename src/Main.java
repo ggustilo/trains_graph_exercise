@@ -20,19 +20,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String filename = "input.txt";
+        // String filename = args[0];
 
         if (instance == null) {
             instance = new Main();
         }
 
-        instance.setUp(filename);
+        instance.setUp();
     }
 
-    public void setUp(String filename) {
+    public void setUp() {
 
         // The name of the file to open.
-        String fileName = filename;
+        String fileName = "input.txt";
 
         // This will reference one line at a time
         String line = null;
