@@ -13,6 +13,7 @@ public class Main {
     and inextricably combined with the graph which is the interface for a collection of objects
     extracted from that text file.
      */
+
     private List<Town> townsForGraph = new ArrayList<Town>();
     private List<Track> tracksForGraph = new ArrayList<Track>();
     public static Graph graph;

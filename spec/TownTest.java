@@ -1,7 +1,10 @@
 package spec;
 
-import static org.junit.Assert.*;
+   
 import org.junit.Test;
+import org.junit.Ignore;
+import static org.junit.Assert.*;
+import src.*;
 
 public class TownTest {
 
@@ -19,8 +22,6 @@ public class TownTest {
     private Track[] tracks = {track1, track2, track3, track4, track5, track6};
 
     private Graph graph = new Graph(towns, tracks);
-
-
 
   @Test
   public void townShouldHaveNameString() {

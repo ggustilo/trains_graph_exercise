@@ -3,6 +3,8 @@ package spec;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import src.*;
+
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         TownTest.class,

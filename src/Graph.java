@@ -88,10 +88,21 @@ public class Graph {
         }
     }
 
-    public int findRoute(Town origin, Town destination, int numStops) {
+    public int findRoutes(Town origin, Town destination, int numStops) {
         /*
         input: a start town, an end town, number of stops
-        
+        if start and end town are the same, make route and return
+        */
+        int numStopsTried = 0;
+        List<Town> towns = new ArrayList<Town>();
+        towns.add(origin);
+        Track[] tracksFromOrigin = this.findAllTracksOutOfTown(origin);
+        for (Track track : tracksFromOrigin) {
+            if (track.getDestination().equals(destination)) {
+
+            }
+        }
+        /*
         initialize int numStopsTried
         initialize array of towns townsOnRoute
 
@@ -110,7 +121,6 @@ public class Graph {
                 add one to numStopsTried
                 call graph.findAllTracksOutOfTown on origin
         recursive ---
-        
         */
         return 9;
     }
@@ -121,12 +131,16 @@ public class Graph {
         /*
         input: a start town, an end town, number of stops
         
-        initialize num Routes
-        call graph.findAllTracksOutOfTown on origin
-        iterate through returned array of tracks
-            if one of the tracks is the destination town
-                add one to numStops
-                return
+        numStops times DO:
+            find all tracks out of origin
+            if one track has destination town of destination
+                add to array of towns
+                create route from array of towns
+                add route to array of valid routes
+            else
+                set each destination town as new origin
+                call find all tracks
+            end
 
         */
         return 9;

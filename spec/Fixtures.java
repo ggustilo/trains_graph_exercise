@@ -1,8 +1,6 @@
 package spec;
-
+import src.*;
 import junit.framework.*;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 
 public class Fixtures extends TestSuite {
 
