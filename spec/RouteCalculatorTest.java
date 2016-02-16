@@ -8,8 +8,8 @@ import src.*;
 
 public class RouteCalculatorTest {
 
-   private Town[] towns = {new Town("A"), new Town("B"), new Town("C")};
-   private Route testRoute = new Route(towns);
+   // private Town[] towns = {new Town("A"), new Town("B"), new Town("C")};
+   // private Route testRoute = new Route(towns);
 //
     @Test
     public void routeCalculatorShouldCalculateRoutes() {

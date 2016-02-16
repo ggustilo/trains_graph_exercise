@@ -93,15 +93,21 @@ public class Graph {
         input: a start town, an end town, number of stops
         if start and end town are the same, make route and return
         */
-        int numStopsTried = 0;
-        List<Town> towns = new ArrayList<Town>();
-        towns.add(origin);
-        Track[] tracksFromOrigin = this.findAllTracksOutOfTown(origin);
-        for (Track track : tracksFromOrigin) {
-            if (track.getDestination().equals(destination)) {
+        // int numStopsTried = 0;
+        // List<Town> towns = new ArrayList<Town>();
+        // List<Route> routes = new ArrayList<Route>();
+        
+        // towns.add(origin);
 
-            }
-        }
+        // Track[] tracksFromOrigin = this.findAllTracksOutOfTown(origin);
+        // for (Track track : tracksFromOrigin) {
+        //     if (track.getDestination().equals(destination)) {
+
+        //     }
+        //     else {
+                
+        //     }
+        // }
         /*
         initialize int numStopsTried
         initialize array of towns townsOnRoute

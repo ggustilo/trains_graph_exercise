@@ -1,27 +1,30 @@
 package spec;
 import src.*;
 import junit.framework.*;
+import org.junit.BeforeClass;
+import org.junit.AfterClass;
+
 
 public class Fixtures extends TestSuite {
 
-    public Town townA;
-    public Town townB;
-    public Town townC;
-    public Town[] towns = new Town[3];
+    public static Town townA;
+    public static Town townB;
+    public static Town townC;
+    public static Town[] towns = new Town[3];
 
-    public Track trackAB;
-    public Track trackBC;
-    public Track trackCA;
-    public Track trackBA;
-    public Track trackCB;
-    public Track trackAC;
-    public Track[] tracks = new Track[6];
+    public static Track trackAB;
+    public static Track trackBC;
+    public static Track trackCA;
+    public static Track trackBA;
+    public static Track trackCB;
+    public static Track trackAC;
+    public static Track[] tracks = new Track[6];
 
-    public Graph graph;
-    public Route testRoute;
-    public Track[] routeTracks;
-    public Track[] tracksOutForTown1;
-    public Track[] tracksInForTown1;
+    public static Graph graph;
+    public static Route testRoute;
+    public static Track[] routeTracks;
+    public static Track[] tracksOutForTown1;
+    public static Track[] tracksInForTown1;
 
     @BeforeClass
     protected void setUp() {
