@@ -3,6 +3,7 @@ package spec;
 import org.junit.Test;
 import org.junit.Ignore;
 import static org.junit.Assert.*;
+import org.hamcrest.*;
 
 import src.*;
 
@@ -21,7 +22,7 @@ public class TrackTest {
   }
 
   @Test
-  public void TrackShouldHaveADistance() {
+  public void trackShouldHaveADistance() {
     // assert statement
     assertSame("Track should have a distance that is an integer.", 5, Fixtures.trackAB.getDistance());
   }

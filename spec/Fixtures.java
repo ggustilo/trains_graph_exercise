@@ -23,11 +23,11 @@ public class Fixtures extends TestSuite {
     public static Graph graph;
     public static Route testRoute;
     public static Track[] routeTracks;
-    public static Track[] tracksOutForTown1;
-    public static Track[] tracksInForTown1;
+    public static Track[] tracksOutForTownA;
+    public static Track[] tracksInForTownA;
 
     @BeforeClass
-    protected void setUp() {
+    public static void setUp() {
         townA = new Town("A");
         townB = new Town("B");
         townC = new Town("C");
@@ -54,7 +54,7 @@ public class Fixtures extends TestSuite {
     }
 
     @AfterClass
-    protected void tearDown() {
+    public static void tearDown() {
         townA = null;
         townB = null;
         townC = null;
@@ -69,7 +69,7 @@ public class Fixtures extends TestSuite {
         graph = null;
         testRoute = null;
         routeTracks = null;
-        tracksOutForTown1 = null;
-        tracksInForTown1 = null;
+        tracksOutForTownA = null;
+        tracksInForTownA = null;
     }
 }

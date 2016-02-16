@@ -3,6 +3,7 @@ package spec;
 import org.junit.Test;
 import org.junit.Ignore;
 import static org.junit.Assert.*;
+import org.hamcrest.*;
 
 import src.*;
 
