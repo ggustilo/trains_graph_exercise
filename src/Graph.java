@@ -34,9 +34,8 @@ public class Graph {
     public List<Track> findAllTracksOutOfTown(Town town) {
         List<Track> tracksOut = new ArrayList<Track>();
         Track[] allTracks = this.getTracks();
-
         for (int i = 0; i < allTracks.length; i++) {
-            if (allTracks[i].getOrigin() == town) {
+            if (allTracks[i].getOrigin().equals(town)) {
                 tracksOut.add(allTracks[i]);
             }
         }
@@ -48,7 +47,7 @@ public class Graph {
         Track [] allTracks = this.getTracks();
 
         for (int i = 0; i < allTracks.length; i++) {
-            if (allTracks[i].getDestination() == town) {
+            if (allTracks[i].getDestination().equals(town)) {
                 tracksIn.add(allTracks[i]);
             }
         }
@@ -88,50 +87,153 @@ public class Graph {
         }
     }
 
-    public int findRoutes(Town origin, Town destination, int numStops) {
-        /*
-        input: a start town, an end town, number of stops
-        if start and end town are the same, make route and return
-        */
-        // int numStopsTried = 0;
-        // List<Town> towns = new ArrayList<Town>();
-        // List<Route> routes = new ArrayList<Route>();
-        
-        // towns.add(origin);
-
-        // Track[] tracksFromOrigin = this.findAllTracksOutOfTown(origin);
-        // for (Track track : tracksFromOrigin) {
-        //     if (track.getDestination().equals(destination)) {
-
-        //     }
-        //     else {
-                
-        //     }
-        // }
-        /*
-        initialize int numStopsTried
-        initialize array of towns townsOnRoute
-
-        recursive --- 
-        call graph.findAllTracksOutOfTown on origin
-        iterate through returned array of tracks
-            get destination for each track
-            if one of the tracks has the destination town
-                add one to numStopsTried
-                add name of destination town to townsOnRoute
-                return townsOnRoute
-            else if numStopsTried is greater than numStops
-                return 'No such route within allowed number of stops!"
-            else for each of the tracks
-                set destination of track to new origin
-                add one to numStopsTried
-                call graph.findAllTracksOutOfTown on origin
-        recursive ---
-        */
-        return 9;
+    public void displayRoutes(List<Route> routes) {
+        System.out.println("======Number of Routes:  " + routes.size() + "\n");
+        for (Route route : routes) {
+            System.out.println("Route object id: " + route + "\n");
+            System.out.println("Route origin: " + route.getTowns()[0].getName()+ "\n");
+            System.out.println("Route destination: " + route.getTowns()[route.getTowns().length-1].getName()+ "\n");
+            System.out.println("Number of towns in route: " + route.getTowns().length + "\n");
+            System.out.print("Route by towns: \n");
+            for (Town town : route.getTowns()) {
+                System.out.print(town.getName() + "  ");
+            }
+            System.out.print("\n\n==================\n\n");
+        }
     }
 
-    // public method to calculate the number of routes possible given start, end and # stops
+    public List<Route> findRoutesWithMaxStops(Town origin, Town destination, int maxNumStopsAllowed) {
+        List<Town> townsVisited = new ArrayList<Town>();
+        List<Route> routes = new ArrayList<Route>();
+        routes.addAll(this.depthFirstSearchWithMaxStops(origin, destination, maxNumStopsAllowed, townsVisited, routes));
+        this.displayRoutes(routes);
+        return routes;
+    }
+
+
+    public List<Route> depthFirstSearchWithMaxStops(Town origin, Town destination, int maxNumStopsAllowed, List<Town> townsVisited, List<Route> routes) {
+        int numStopsTried = townsVisited.size();
+        townsVisited.add(origin);
+        List<Track> tracksFromOrigin = this.findAllTracksOutOfTown(origin);
+
+            System.out.println("\nNew call...\n");
+            System.out.println("Origin:" + origin.getName() + "\n");
+            for (Track track : tracksFromOrigin) {
+                System.out.print("Returned tracks:" + track.getDestination().getName() + ", ");
+            }
+            System.out.println("\n Number of Stops tried so far:" + numStopsTried);
+
+        for (Track track : tracksFromOrigin) {
+            Town nextTown = track.getDestination();
+
+                System.out.println("This is the next town:" + nextTown.getName());
+                System.out.println("Is Destination?:" + nextTown.equals(destination));
+
+            if (nextTown.equals(destination)) {
+                numStopsTried += 1;
+                townsVisited.add(nextTown);
+
+                    System.out.println("Number of stops when we have a route:" + numStopsTried);
+
+                Town[] routeTowns = new Town[townsVisited.size()];
+                townsVisited.toArray(routeTowns);
+                routes.add(new Route(routeTowns));
+
+                    System.out.println("Towns visited so far in Route: ");
+                    for (Town town : townsVisited) {
+                        System.out.print(town.getName() + "  ");
+                    }
+                    System.out.println("\n**************\nGotta Route!\n");
+                    System.out.println("Num routes:" + routes.size());
+
+                numStopsTried = 0;
+                Town originalOrigin = townsVisited.get(0);
+                townsVisited.removeAll(townsVisited);
+                townsVisited.add(originalOrigin);
+                return routes;
+            }
+            else if (numStopsTried > maxNumStopsAllowed) {
+                    System.out.println("There were no routes that fulfilled the requested paramenters.");
+                return routes;
+            }
+            else {
+                    System.out.println("Try again with new origin of: "+ nextTown.getName());
+                    System.out.println("Towns visited so far are: ");
+                    for (Town town : townsVisited) {
+                        System.out.print(town.getName() + "  ");
+                    }
+
+                numStopsTried += 1;
+                this.depthFirstSearchWithMaxStops(nextTown, destination, maxNumStopsAllowed, townsVisited, routes);
+            }
+        }
+        List<Route> emptyRoutes = new ArrayList<Route>();
+        return emptyRoutes;
+    }
+
+    public List<Route> findRoutesWithExactStops(Town origin, Town destination, int numStopsNeeded) {
+        List<Town> townsVisited = new ArrayList<Town>();
+        List<Route> routes = new ArrayList<Route>();
+        routes.addAll(this.depthFirstSearchWithExactStops(origin, destination, numStopsNeeded, townsVisited, routes));
+        this.displayRoutes(routes);
+        return routes;
+    }
+
+    public List<Route> depthFirstSearchWithExactStops(Town origin, Town destination, int numStopsNeeded, List<Town> townsVisited, List<Route> routes) {
+        List<Route> emptyRoutes = new ArrayList<Route>();
+        int numStopsTried = townsVisited.size();
+        List<Track> tracksFromOrigin = this.findAllTracksOutOfTown(origin);
+        
+        townsVisited.add(origin);
+
+            System.out.println("\nNew call...\n");
+            System.out.println("Origin:" + origin.getName() + "\n");
+            for (Track track : tracksFromOrigin) {
+                System.out.print("Returned tracks:" + track.getDestination().getName() + ", ");
+            }
+            System.out.println("\n Number of Stops tried so far:" + numStopsTried);
+
+        for (Track track : tracksFromOrigin) {
+            Town nextTown = track.getDestination();
+
+                System.out.println("This is the next town:" + nextTown.getName());
+                System.out.println("Is Destination?:" + (nextTown.equals(destination) && numStopsTried == numStopsNeeded));
+            
+            if (nextTown.equals(destination) && numStopsTried + 1 == numStopsNeeded) {
+                townsVisited.add(nextTown);
+
+                    System.out.println("Number of stops when we have a route:" + numStopsTried);
+
+                Town[] routeTowns = new Town[townsVisited.size()];
+                townsVisited.toArray(routeTowns);
+                routes.add(new Route(routeTowns));
+
+                    System.out.println("Towns visited so far in Route: ");
+                    for (Town town : townsVisited) {
+                        System.out.print(town.getName() + "  ");
+                    }
+                    System.out.println("\n**************\nGotta Route!\n");
+                    System.out.println("Num routes:" + routes.size());
+
+                Town originalOrigin = townsVisited.get(0);
+                townsVisited.removeAll(townsVisited);
+                townsVisited.add(originalOrigin);
+                return routes;
+            }
+            else {
+                    System.out.println("Try again with new origin of: "+ nextTown.getName());
+                    System.out.println("Towns visited so far are: ");
+                    for (Town town : townsVisited) {
+                        System.out.print(town.getName() + "  ");
+                    }
+                if (townsVisited.size() > numStopsNeeded) {
+                    continue;
+                }
+                this.depthFirstSearchWithExactStops(nextTown, destination, numStopsNeeded, townsVisited, routes);
+            }
+        }
+        return emptyRoutes;
+    }
 
     public int findNumberRoutes(Town origin, Town destination, int numStops) {
         /*
