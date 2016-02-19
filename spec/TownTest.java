@@ -24,7 +24,7 @@ public class TownTest {
   @Test
   public void townShouldHaveTracksInArray() {
     // assert statement
-    assertArrayEquals("Town A should have an array of tracks going into town", Fixtures.tracksInForTownA, Fixtures.townA.getTracksIn(Fixtures.graph));
+    assertArrayEquals("Town A should have an array of tracks going into town", Fixtures.tracksInForTownC, Fixtures.townC.getTracksIn(Fixtures.graph));
   }
 
 }

@@ -12,14 +12,20 @@ import java.util.Set;
 import java.util.Collections;
 
 public class BreadthFirstSearcher implements Iterator<Town> {
+	public List<Town> townsOnRoute = new ArrayList<Town>();
+	public List<Route> routes = new ArrayList<Route>();
 	private Set<Town> visited = new HashSet<Town>();
 	private Queue<Town> queue = new LinkedList<Town>();
 	private Graph graph;
+	private Town target;
+	private int stops;
 
-	public void bfsIterator(Graph mainGraph, Town origin) {
+	public void setUp(Graph mainGraph, Town origin, Town destination, int numStopsExactly) {
 		this.graph = mainGraph;
 		this.queue.add(origin);
 		this.visited.add(origin);
+		this.target = destination;
+		this.stops = numStopsExactly;
 	}
 
 	@Override
@@ -29,15 +35,24 @@ public class BreadthFirstSearcher implements Iterator<Town> {
 
 	@Override
 	public Town next() {
+		Town emptyTown = new Town("Null");
+		// get the next town
 		Town next = queue.remove();
+		System.out.println("QUEUE SIZE: " + queue.size());	
 		System.out.println("This is next " + next + " : " + next.getName());
-		for (Town neighboringTown : this.graph.getAllNeighboringTowns(next)) {
-			System.out.println(this.graph.getAllNeighboringTowns(next));
-			if (!this.visited.contains(neighboringTown)) {
-				this.queue.add(neighboringTown);
-				// this.visited.add(neighboringTown);
+		// find all the adjacent towns
+		for (Town town : this.graph.getAllNeighboringTowns(next)) {
+			if (!this.visited.contains(town)) {
+				System.out.println(town.getName());
+				this.queue.add(town);
+				this.visited.add(town);
 			}
 		}
-		return next;
+		if (next != null) {
+			return next;
+		}
+		else {
+			return emptyTown;
+		}
 	}
 }

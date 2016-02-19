@@ -68,7 +68,7 @@ public class Graph {
             return null;
         }   
         return null;
-        //FIXME: Should be able to return null - ask about class wrappers
+        //FIXME: Should be able to return null - class wrapper for object?
     }
 
     public java.lang.Integer findTotalDistanceOfRoute(Route route) {
@@ -89,7 +89,6 @@ public class Graph {
     }
 
     public Iterable<Town> getAllNeighboringTowns(Town town) {
-        System.out.println("Accessed!!");
         List<Track> tracks = this.findAllTracksOutOfTown(town);
         List<Town> neighboringTowns = new ArrayList<Town>();
         for (Track track : tracks) {
@@ -110,7 +109,7 @@ public class Graph {
             System.out.println("Route origin: " + route.getTowns()[0].getName()+ "\n");
             System.out.println("Route destination: " + route.getTowns()[route.getTowns().length-1].getName()+ "\n");
             System.out.println("Number of towns in route: " + route.getTowns().length + "\n");
-            System.out.print("Route by towns: \n");
+            System.out.print("Route by towns: \n\n");
             for (Town town : route.getTowns()) {
                 System.out.print(town.getName() + "  ");
             }
@@ -120,42 +119,41 @@ public class Graph {
 
     public List<Route> findRoutesWithMaxStops(Town origin, Town destination, int maxNumStopsAllowed) {
         DepthFirstSearcher searcher = new DepthFirstSearcher();
-        List<Town> towns = new ArrayList<Town>();
         List<Route> routes = new ArrayList<Route>();
         int counter = 0;
-        towns.add(origin);
-        searcher.dfsIterator(this, origin, destination);
-        searcher.next();
+        searcher.setUp(this, origin, destination);
         do {
             do {
                 searcher.next();
                 counter += 1;
-                System.out.println("COUNTER: " + counter);
             } while (counter < maxNumStopsAllowed);
             routes = searcher.getRoutes();
-            for (Route route : routes) {
-                System.out.println("Route: " + route + "\n");
-                for (Town town : route.getTowns()) {
-                    System.out.println("These are the towns...");
-                    System.out.println(town.getName());
-                }
-                System.out.println("\n");
-            }
         } while (searcher.next().getName() != "Null");
         this.displayRoutes(routes);
         return routes;
     }
 
-    public List<Route> findRoutesWithMaxStops(Town origin, Town destination, int maxNumStopsAllowed) {
-        List<Town> townsVisited = new ArrayList<Town>();
+    public List<Route> findRoutesWithExactStops(Town origin, Town destination, int exactNumStopsNeeded) {
+        List<Town> towns = new ArrayList<Town>();
+        BreadthFirstSearcher searcher = new BreadthFirstSearcher();
         List<Route> routes = new ArrayList<Route>();
-        // routes.addAll(this.depthFirstSearchForTown(origin, destination, maxNumStopsAllowed, townsVisited, routes));
-        this.displayRoutes(routes);
-        return routes;
-    }
+        int counter = 0;
+        searcher.setUp(this, origin, destination, exactNumStopsNeeded);
+        do {
+            do {
+                towns.add(searcher.next());
+            } while (counter < exactNumStopsNeeded);
+            
+            if (towns.get(towns.size() - 1).equals(destination)) {
+                Town[] routeTowns = new Town[towns.size()];
+                towns.toArray(routeTowns);
+                Route route = new Route(routeTowns);
+                routes.add(route);
+            }
+            counter += 1;
+        } while (searcher.next().getName() != "Null");
 
-    public List<Route> findRouteswithExactStops(Town origin, Town destination, int exactNumStopsNeeded) {
-        List<Route> routes = new ArrayList<Route>();
+        this.displayRoutes(routes);
         return routes;
     }
 
