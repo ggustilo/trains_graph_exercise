@@ -89,6 +89,7 @@ public class Graph {
     }
 
     public Iterable<Town> getAllNeighboringTowns(Town town) {
+        System.out.println("Accessed!!");
         List<Track> tracks = this.findAllTracksOutOfTown(town);
         List<Town> neighboringTowns = new ArrayList<Town>();
         for (Track track : tracks) {
@@ -118,11 +119,35 @@ public class Graph {
     }
 
     public List<Route> findAllRoutesBetweenTwoTowns(Town origin, Town destination) {
-        BreadthFirstSearcher searcher = new BreadthFirstSearcher();
+        DepthFirstSearcher searcher = new DepthFirstSearcher();
         List<Town> towns = new ArrayList<Town>();
         List<Route> routes = new ArrayList<Route>();
-        searcher.setUp(this, origin);
-        System.out.println(searcher.next().getName());
+        towns.add(origin);
+        searcher.dfsIterator(this, origin, destination);
+        searcher.next();
+        while (towns.size() < 10) {
+            towns.add(searcher.next());
+            if (towns.get(towns.size() - 1) == destination) {
+                Town[] routeTowns = new Town[towns.size()];
+                towns.toArray(routeTowns);
+                Route route = new Route(routeTowns);
+                routes.add(route);
+                System.out.println("Number of Routes: " + routes.size());
+                for (Route r : routes) {
+                    System.out.println("Route: " + route);
+                    Town[] townsInRoute = r.getTowns();
+                    for (Town t : townsInRoute) {
+                        System.out.print(t.getName() + " , ");
+                    }
+                    System.out.println("\n");
+                }
+
+            }
+        }
+        for (Town town : towns) {
+            System.out.println("These are the towns...");
+            System.out.println(town.getName());
+        }
         return routes;
     }
 

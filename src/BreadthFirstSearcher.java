@@ -16,7 +16,7 @@ public class BreadthFirstSearcher implements Iterator<Town> {
 	private Queue<Town> queue = new LinkedList<Town>();
 	private Graph graph;
 
-	public void setUp(Graph mainGraph, Town origin) {
+	public void bfsIterator(Graph mainGraph, Town origin) {
 		this.graph = mainGraph;
 		this.queue.add(origin);
 		this.visited.add(origin);
@@ -30,10 +30,12 @@ public class BreadthFirstSearcher implements Iterator<Town> {
 	@Override
 	public Town next() {
 		Town next = queue.remove();
+		System.out.println("This is next " + next + " : " + next.getName());
 		for (Town neighboringTown : this.graph.getAllNeighboringTowns(next)) {
+			System.out.println(this.graph.getAllNeighboringTowns(next));
 			if (!this.visited.contains(neighboringTown)) {
 				this.queue.add(neighboringTown);
-				this.visited.add(neighboringTown);
+				// this.visited.add(neighboringTown);
 			}
 		}
 		return next;
