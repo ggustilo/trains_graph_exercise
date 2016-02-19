@@ -12,7 +12,6 @@ import src.*;
         TownTest.class,
         TrackTest.class,
         RouteTest.class,
-        RouteCalculatorTest.class,
         GraphTest.class
 })
 
