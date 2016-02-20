@@ -35,9 +35,8 @@ public class RouteCalculator {
 
         System.out.println("Routes from C to C with max 3 stops: " + Main.graph.findRoutesWithMaxStops(townC, townC, 3) + "\n\n");
 
-        Main.graph.findRoutesWithExactStops(townA, townC, 4);
+        // Main.graph.findRoutesWithMaxStops(townA, townC, 4); - problem #7 (fails)
 
-        // System.out.println(Main.graph.getAllNeighboringTowns(townA));
 	}
 
 }

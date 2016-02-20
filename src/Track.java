@@ -38,7 +38,6 @@ public class Track {
         if (distance != track.distance) return false;
         if (!origin.equals(track.origin)) return false;
         return destination.equals(track.destination);
-
     }
 
     @Override

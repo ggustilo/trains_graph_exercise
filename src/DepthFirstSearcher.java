@@ -40,56 +40,49 @@ public class DepthFirstSearcher implements Iterator<Town> {
 	}
 
 	private void advance() {
-		// get the neighboring towns iterator from the top of the stack and set it in progress
 		Iterator<Town> currentLevelOfNeighboringTowns = this.stack.peek();
 		// if we have already visited this town, keep going
 		do {
 				// except if there are no more towns in our current stack level
 				while (!currentLevelOfNeighboringTowns.hasNext()) {
-					//in which case, pop off this level
 					this.stack.pop();
-						// and if there are no more levels
 						if (this.stack.isEmpty()) {
-							// then just return
 							this.next = null;
 							return;
 						}
-					// otherwise, get the next set of neighboring towns, and set them in progress
 					currentLevelOfNeighboringTowns = this.stack.peek();
 				}
-
-				// keep going through the towns in our current level/iterator
 				this.next = currentLevelOfNeighboringTowns.next();
 
 				// if current town is our target, then:
 				if (this.next.equals(this.target)) {
 					// add the origin to the beginning of the townsOnRoute array (for complete route)
 					this.addOrigin();
-					
+
 					// then create a new route and add it to routes
 					Town[] towns = new Town[townsOnRoute.size()];
           townsOnRoute.toArray(towns);
           Route route = new Route(towns);
           routes.add(route);
 
-					// then pop off the current level of the stack
+					// then move to the next level
 					this.stack.pop();
-					// set the next level in progress
 					currentLevelOfNeighboringTowns = this.stack.peek();
-					// remove all the towns in townsOnRoute - clear it out for next route
+					// clear out towns for the next route
 					townsOnRoute.removeAll(townsOnRoute);
 				}
 
 		} while (this.visited.contains(this.next) && !(this.next.equals(this.target)));
-		// add current town to our townsOnRoute
 		townsOnRoute.add(this.next);
-		// add all the neighboring towns from the next town onto the stack (as an iterator)
 		this.stack.push(this.graph.getAllNeighboringTowns(this.next).iterator());
 	}
 
 	@Override
 	public Town next() {
+		// create an empty instance to return when we run out
+		// FIXME: need better error handling
 		Town emptyTown = new Town("Null");
+		// while there still is a next town
 		if (this.next != null) {
 			try {
 				this.visited.add(this.next);

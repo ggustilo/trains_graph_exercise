@@ -38,8 +38,6 @@ public class BreadthFirstSearcher implements Iterator<Town> {
 		Town emptyTown = new Town("Null");
 		// get the next town
 		Town next = queue.remove();
-		System.out.println("QUEUE SIZE: " + queue.size());	
-		System.out.println("This is next " + next + " : " + next.getName());
 		// find all the adjacent towns
 		for (Town town : this.graph.getAllNeighboringTowns(next)) {
 			if (!this.visited.contains(town)) {

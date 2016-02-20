@@ -33,6 +33,7 @@ public class Graph {
     }
 
     public List<Track> findAllTracksOutOfTown(Town town) {
+        // get all the tracks, iterate through them and find which ones have origin of town
         List<Track> tracksOut = new ArrayList<Track>();
         Track[] allTracks = this.getTracks();
         for (int i = 0; i < allTracks.length; i++) {
@@ -44,6 +45,7 @@ public class Graph {
     }
 
     public List<Track> findAllTracksIntoTown(Town town) {
+        // get all the tracks, iterate through them and find which ones have destination of town
         List<Track> tracksIn = new ArrayList<Track>();
         Track [] allTracks = this.getTracks();
 
@@ -56,6 +58,7 @@ public class Graph {
     }
 
     public Track findDirectedTrackBetweenTwoTowns(Town origin, Town destination) {
+        // find any existing track between town towns - keeps direction
         Track[] allTracks = this.getTracks();
         try {
             for (int i = 0; i < allTracks.length; i++) {
@@ -72,6 +75,7 @@ public class Graph {
     }
 
     public java.lang.Integer findTotalDistanceOfRoute(Route route) {
+        // will find the total distance of a route but iterating through the tracks
         Town[] towns = route.getTowns();
         Track[] tracks = route.getTracks();
         if (tracks.length == towns.length - 1)
@@ -89,6 +93,7 @@ public class Graph {
     }
 
     public Iterable<Town> getAllNeighboringTowns(Town town) {
+        // find all tracks out - get their destinations to find neighboring towns
         List<Track> tracks = this.findAllTracksOutOfTown(town);
         List<Town> neighboringTowns = new ArrayList<Town>();
         for (Track track : tracks) {
@@ -122,8 +127,11 @@ public class Graph {
         List<Route> routes = new ArrayList<Route>();
         int counter = 0;
         searcher.setUp(this, origin, destination);
+        // while there are still towns in the graph
         do {
+            // while we are still within our budget of stops
             do {
+                // call the next stop
                 searcher.next();
                 counter += 1;
             } while (counter < maxNumStopsAllowed);
@@ -156,7 +164,5 @@ public class Graph {
         this.displayRoutes(routes);
         return routes;
     }
-
-
 
 }
