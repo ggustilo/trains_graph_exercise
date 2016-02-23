@@ -32,10 +32,10 @@ public class RouteCalculator {
         System.out.println("Total Distance of Route AEBCD: " + Main.graph.findTotalDistanceOfRoute(routeAEBCD));
 				// 5. The distance of the route A-E-D.
         System.out.println("Total Distance of Route AED: " + Main.graph.findTotalDistanceOfRoute(routeAED) + "\n\n");
-
+        // 6. The number of trips starting at C and ending at C with a maximum of 3 stops.  In the sample data below, there are two such trips: C-D-C (2 stops). and C-E-B-C (3 stops).
         System.out.println("Routes from C to C with max 3 stops: " + Main.graph.findRoutesWithMaxStops(townC, townC, 3) + "\n\n");
 
-        // Main.graph.findRoutesWithMaxStops(townA, townC, 4); - problem #7 (fails)
+        // Main.graph.findRoutesWithMaxStops(townA, townC, 4); - problem #7 
 
 	}
 
